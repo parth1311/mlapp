@@ -63,8 +63,6 @@ Install and Configure DVC (installation handled in requirements.txt)
 dvc init
 dvc remote add origin https://dagshub.com/parth1311/mlapp.dvc
 dvc remote modify origin --local auth basic
-dvc remote modify origin --local user parth1311
-dvc remote modify origin --local password 787@Dc942
 
 dvc pull -r origin
 
