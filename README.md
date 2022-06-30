@@ -54,4 +54,33 @@ Project Organization
 
 --------
 
+Step 1:
+Create GitHub Repo
+Connect GitHub Repo to DagsHub
+
+Step 2:
+Install and Configure DVC (installation handled in requirements.txt)
+dvc init
+dvc remote add origin https://dagshub.com/parth1311/mlapp.dvc
+dvc remote modify origin --local auth basic
+dvc remote modify origin --local user parth1311
+dvc remote modify origin --local password 787@Dc942
+
+dvc pull -r origin
+
+dvc add data/raw
+git add data/.gitignore data/raw.dvc 
+
+dvc push -r origin
+
+Step 3:
+Install mlflow (Comes as part of requirement.txt)
+mlflow.set_tracking_uri("https://dagshub.com/parth1311/mlapp.mlflow")
+tracking_uri = mlflow.get_tracking_uri()
+print("Current tracking uri: {}".format(tracking_uri))
+
+export MLFLOW_TRACKING_USERNAME=parth1311
+export MLFLOW_TRACKING_PASSWORD=787@Dc942
+
+
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>

@@ -1,6 +1,13 @@
 # local package
 -e .
 
+dagshub
+dvc
+joblib
+pandas
+scikit-learn
+mlflow
+
 # external requirements
 click
 Sphinx
