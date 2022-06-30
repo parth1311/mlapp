@@ -7,6 +7,8 @@ joblib
 pandas
 scikit-learn
 mlflow
+pylint
+pytest-cov
 
 # external requirements
 click
