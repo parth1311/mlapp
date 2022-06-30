@@ -79,8 +79,6 @@ mlflow.set_tracking_uri("https://dagshub.com/parth1311/mlapp.mlflow")
 tracking_uri = mlflow.get_tracking_uri()
 print("Current tracking uri: {}".format(tracking_uri))
 
-export MLFLOW_TRACKING_USERNAME=parth1311
-export MLFLOW_TRACKING_PASSWORD=787@Dc942
 
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
