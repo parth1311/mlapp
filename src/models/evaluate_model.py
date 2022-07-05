@@ -57,3 +57,4 @@ ax0.set_xlabel('True Target')
 ax0.set_title('Ridge regression \n without target transformation')
 ax0.text(100, 1750, r'$R^2$=%.2f, MAE=%.2f' % (
 r2_score(y_test, y_pred), median_absolute_error(y_test, y_pred)))
+"""

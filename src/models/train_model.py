@@ -38,4 +38,3 @@ if model_type == "ElasticNet":
 model.fit(X_train, y_train)
 
 pickle.dump(model, open(str(Config.MODELS_PATH / "model.pickle"), "wb"))
-Footer

@@ -13,7 +13,7 @@ with open ("params.yaml", "r") as fd:
 
 random_state = params['random_state']
 np.random.seed(random_state)
-df = pd.read_csv(str(Config.ORIGINAL_DATASET_FILE_PATH))
+df = pd.read_csv(str(Config.ORIGINAL_DATASET_FILE_PATH),sep=';')
 
 #Split the data into training and test sets. (0.75, 0.25) split.
 train, test = train_test_split(df)

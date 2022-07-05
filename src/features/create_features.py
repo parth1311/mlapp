@@ -12,7 +12,7 @@ test = pd.read_csv(str(Config.DATASET_PATH / "test.csv"))
 #test['goodquality'] = [1 if x >= 7 else 0 for x in test['quality']]# Separate feature variables and target variable
 
 def extract_features(df):
-    df["quality"] = df.drop(["quality"], axis=1)
+    df.drop(["quality"], axis=1)
     return df[["quality"]]
     #df["goodquality"] = df.drop(["quality", "goodquality"], axis=1)
     #return df[["goodquality"]] 
@@ -32,4 +32,3 @@ test_features.to_csv(str(Config.FEATURES_PATH / "test_features.csv"), index=None
 
 train_labels.to_csv(str(Config.FEATURES_PATH / "train_labels.csv"), index=None)
 test_labels.to_csv(str(Config.FEATURES_PATH / "test_labels.csv"), index=None)
-Footer
