@@ -46,10 +46,11 @@ Project Organization
        |-- features
        |   |-- .gitkeep
        |   |-- config.py            <- Has the config parameters required for the python script
-       |   |-- create_features.py   <- Extracts the feature set from train and test models 
+       |   |-- create_features.py   <- Extracts the feature (quality) set from train and test models
        |-- models
        |   |-- .gitkeep
        |   |-- config.py            <- Has the config parameters required for the python script
+       |   |-- evaluate_model.py    <- Compares the Predicted output v/s Actual output, calculates RMSE, MAE, R2 parameters and outputs it to metrics.json
        |   |-- train_model.py       <- Trains the model with the parameters used in params.yaml
        |-- visualization
        |   |-- .gitkeep
@@ -60,6 +61,7 @@ Project Organization
 
 
 --------
+
 GENERAL STEPS TO BE FOLLOWED :
 
 Step 1:
@@ -76,7 +78,7 @@ Step 2: (For DVC based tracking)
  - dvc push -r origin
  - git add <files> - Whenever files need to be committed and pushed to GitHub
  
-Step 4 : 
+Step 3 : 
  - Whenever a change to dataset/model is done, run a "dvc repro" in the project directory to run all the stages in DVC pipeline.
  - Add and commit the changes appropriately to DVC and GitHub and track the progress on DagsHub (https://dagshub.com/parth1311/mlapp)
 
@@ -86,6 +88,12 @@ Step : (For MLFlow based Tracking)
     tracking_uri = mlflow.get_tracking_uri()
     print("Current tracking uri: {}".format(tracking_uri))
 
-
+SETTING UP DVC FOR THE FIRST TIME : 
+  - Make sure you have all the required python files to create dataset, extract feature set, split the dataset into test and train, train the dataset, and evaluate the model based on some metrics
+  - dvc run -f -n prepare -d src/data/create_dataset.py -o assets/data python src/data/create_dataset.py
+  - dvc run -f -n featurize -d src/features/create_features.py -d assets/data -o assets/features python src/features/create_features.py
+  - dvc run -f -n evaluate -d src/models/evaluate_model.py -d assets/features -d assets/models -p model_type -M assets/metrics.json python src/models/evaluate_model.py
+  - On running these steps, the dvc.yaml file is updated with the stages in the pipeline/workflow.
+  - Push all the files into the repo and run a "dvc repro" the next time you want to tune hyperparameters/ change the dataset
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
