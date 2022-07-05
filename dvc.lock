@@ -34,19 +34,19 @@ stages:
       size: 6428
       nfiles: 4
     - path: src/models/train_model.py
-      md5: 15e5d80580d67448ccbe84e3f4b26524
-      size: 1154
+      md5: ffb686f9fa837cf70b46226b6af1da71
+      size: 1153
     params:
       params.yaml:
         model_type: LogisticRegression
-        random_state: 55
+        random_state: 56
         train:
-          epochs: 250
-          alpha: 0.03
-          l1_rate: 0.04
+          epochs: 500
+          alpha: 0.025
+          l1_rate: 0.044
     outs:
     - path: assets/models
-      md5: ac91284ea052b69570ee5f8fdb359c55.dir
+      md5: e0c668d0da18efd273b75d2837dfc4d7.dir
       size: 1095
       nfiles: 1
   evaluate:
@@ -57,7 +57,7 @@ stages:
       size: 6428
       nfiles: 4
     - path: assets/models
-      md5: ac91284ea052b69570ee5f8fdb359c55.dir
+      md5: e0c668d0da18efd273b75d2837dfc4d7.dir
       size: 1095
       nfiles: 1
     - path: src/models/evaluate_model.py

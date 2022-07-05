@@ -1,8 +1,8 @@
 model_type: LogisticRegression
-lr: 0.007
-random_state: 55
+lr: 0.009
+random_state: 56
 
 train:
-  epochs: 250
-  alpha: 0.03
-  l1_rate: 0.04
+  epochs: 500
+  alpha: 0.025
+  l1_rate: 0.044

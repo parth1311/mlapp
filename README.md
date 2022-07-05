@@ -1,81 +1,90 @@
 mlapp
 ==============================
 
-First MLApp using CookieCutter
+This README has details on the ML App created that has the template from Cookie-cutter. It has DVC pipelines implemented in the workflow.
+The code is run on a remote server on Cloud9 platform in AWS.
 
 Project Organization
 ------------
-
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+    LICENSE
+    Makefile                        <- Makefile with commands to run for example installation of requirements
+    README.md                       <- The top-level README for developers using this project.
+    assets
+       |-- .gitignore
+       |-- metrics.json             <- Json file output. Actual assets are stored in https://dagshub.com/parth1311/mlapp. This file tracks the metrics (RMSE, MAE)
+    data
+       |-- .gitignore
+       |-- raw.dvc                  <- Has information on the dataset used. Tracked in DVC. 
+    docs
+       |-- Makefile
+       |-- commands.rst
+       |-- conf.py
+       |-- getting-started.rst
+       |-- index.rst
+       |-- make.bat
+    dvc.lock                        <- Records the state of pipelines
+    dvc.yaml                        <- YAML file to run all the stages on "dvc repro" command
+    models
+       |-- .gitkeep
+    notebooks
+       |-- .gitkeep
+    params.yaml                     <- YAML file that has all the parameters required to train the model (Ex) type of regression, epochs, etc.
+    references
+       |-- .gitkeep
+    reports
+       |-- .gitkeep
+       |-- figures
+       |   |-- .gitkeep 
+    requirements.txt                <- Sets up all the required libraries to execute this project
+    setup.py
+    src
+       |-- __init__.py
+       |-- data
+       |   |-- .gitkeep
+       |   |-- config.py            <- Has the config parameters required for the python script
+       |   |-- create_dataset.py    <- Imports wine-quality.csv data set and creates train and test split
+       |-- features
+       |   |-- .gitkeep
+       |   |-- config.py            <- Has the config parameters required for the python script
+       |   |-- create_features.py   <- Extracts the feature set from train and test models 
+       |-- models
+       |   |-- .gitkeep
+       |   |-- config.py            <- Has the config parameters required for the python script
+       |   |-- train_model.py       <- Trains the model with the parameters used in params.yaml
+       |-- visualization
+       |   |-- .gitkeep
+       |   |-- __init__.py
+       |   |-- visualize.py
+    test_environment.py
+    tox.ini
 
 
 --------
+GENERAL STEPS TO BE FOLLOWED :
 
 Step 1:
-Create GitHub Repo
-Connect GitHub Repo to DagsHub
+ - Create GitHub Repo
+ - Connect GitHub Repo to DagsHub
 
-Step 2:
-Install and Configure DVC (installation handled in requirements.txt)
-dvc init
-dvc remote add origin https://dagshub.com/parth1311/mlapp.dvc
-dvc remote modify origin --local auth basic
+Step 2: (For DVC based tracking)
+ - Install and Configure DVC (installation handled in requirements.txt)
+ - dvc init
+ - dvc remote add origin https://dagshub.com/parth1311/mlapp.dvc
+ - dvc remote modify origin --local auth basic
+ - dvc pull -r origin
+ - dvc add <files> - Whenever new files have to be tracked on DVC
+ - dvc push -r origin
+ - git add <files> - Whenever files need to be committed and pushed to GitHub
+ 
+Step 4 : 
+ - Whenever a change to dataset/model is done, run a "dvc repro" in the project directory to run all the stages in DVC pipeline.
+ - Add and commit the changes appropriately to DVC and GitHub and track the progress on DagsHub (https://dagshub.com/parth1311/mlapp)
 
-dvc pull -r origin
-
-dvc add data/raw
-git add data/.gitignore data/raw.dvc 
-
-dvc push -r origin
-
-Step 3:
-Install mlflow (Comes as part of requirement.txt)
-mlflow.set_tracking_uri("https://dagshub.com/parth1311/mlapp.mlflow")
-tracking_uri = mlflow.get_tracking_uri()
-print("Current tracking uri: {}".format(tracking_uri))
+Step : (For MLFlow based Tracking)
+  - Install mlflow (Comes as part of requirement.txt)
+  - mlflow.set_tracking_uri("https://dagshub.com/parth1311/mlapp.mlflow")
+    tracking_uri = mlflow.get_tracking_uri()
+    print("Current tracking uri: {}".format(tracking_uri))
 
 
 
