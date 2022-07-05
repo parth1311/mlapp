@@ -63,6 +63,7 @@ Project Organization
 --------
 
 GENERAL STEPS TO BE FOLLOWED :
+==============================
 
 Step 1:
  - Create GitHub Repo
@@ -87,13 +88,15 @@ Step : (For MLFlow based Tracking)
   - mlflow.set_tracking_uri("https://dagshub.com/parth1311/mlapp.mlflow")
     tracking_uri = mlflow.get_tracking_uri()
     print("Current tracking uri: {}".format(tracking_uri))
+==============================
+
 
 SETTING UP DVC FOR THE FIRST TIME : 
+------------------------------
   - Make sure you have all the required python files to create dataset, extract feature set, split the dataset into test and train, train the dataset, and evaluate the model based on some metrics
   - dvc run -f -n prepare -d src/data/create_dataset.py -o assets/data python src/data/create_dataset.py
   - dvc run -f -n featurize -d src/features/create_features.py -d assets/data -o assets/features python src/features/create_features.py
   - dvc run -f -n evaluate -d src/models/evaluate_model.py -d assets/features -d assets/models -p model_type -M assets/metrics.json python src/models/evaluate_model.py
   - On running these steps, the dvc.yaml file is updated with the stages in the pipeline/workflow.
   - Push all the files into the repo and run a "dvc repro" the next time you want to tune hyperparameters/ change the dataset
-
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+------------------------------
