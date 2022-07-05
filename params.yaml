@@ -1,8 +1,8 @@
-model_type: ElasticNet
+model_type: LogisticRegression
 lr: 0.007
-random_state: 42
+random_state: 55
 
 train:
-  epochs: 100
-  alpha: 0.025
-  l1_rate: 0.3
+  epochs: 250
+  alpha: 0.03
+  l1_rate: 0.04
