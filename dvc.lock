@@ -41,12 +41,12 @@ stages:
         model_type: ElasticNet
         random_state: 42
         train:
-          epochs: 70
-          alpha: 0.01
-          l1_rate: 0.5
+          epochs: 100
+          alpha: 0.025
+          l1_rate: 0.3
     outs:
     - path: assets/models
-      md5: 47e5c5b56a28c248a419b311d0c4ceff.dir
+      md5: 46cfd1e8b70df7116cfa471ec397a178.dir
       size: 814
       nfiles: 1
   evaluate:
@@ -57,7 +57,7 @@ stages:
       size: 6428
       nfiles: 4
     - path: assets/models
-      md5: 47e5c5b56a28c248a419b311d0c4ceff.dir
+      md5: 46cfd1e8b70df7116cfa471ec397a178.dir
       size: 814
       nfiles: 1
     - path: src/models/evaluate_model.py
@@ -68,5 +68,5 @@ stages:
         model_type: ElasticNet
     outs:
     - path: assets/metrics.json
-      md5: 840ee7b87fe89400ba1411d6fb276da1
-      size: 83
+      md5: 78cad40f6fbcdf9a5e4a5a0c4f512e2b
+      size: 85

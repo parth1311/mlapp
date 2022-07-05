@@ -1,8 +1,8 @@
 model_type: ElasticNet
-lr: 0.0041
+lr: 0.007
 random_state: 42
 
 train:
-  epochs: 70
-  alpha: 0.01
-  l1_rate: 0.5
+  epochs: 100
+  alpha: 0.025
+  l1_rate: 0.3
