@@ -14,7 +14,7 @@ class Config:
     #L1_RATIO = L1_RATIO
     DVC_ASSETS_PATH = Path("./assets")
 
-    ORIGINAL_DATASET_FILE_PATH = Path("./src/data/wine-quality.csv")
+    ORIGINAL_DATASET_FILE_PATH = Path("./data/raw/wine-quality.csv")
     DATASET_PATH = Path(DVC_ASSETS_PATH / "data")
     FEATURES_PATH = Path(DVC_ASSETS_PATH / "features")
     MODELS_PATH = Path(DVC_ASSETS_PATH / "models")
