@@ -63,7 +63,7 @@ Project Organization
 --------
 
 GENERAL STEPS TO BE FOLLOWED :
-==============================
+------------------------------
 
 Step 1:
  - Create GitHub Repo
@@ -88,7 +88,7 @@ Step : (For MLFlow based Tracking)
   - mlflow.set_tracking_uri("https://dagshub.com/parth1311/mlapp.mlflow")
     tracking_uri = mlflow.get_tracking_uri()
     print("Current tracking uri: {}".format(tracking_uri))
-==============================
+
 
 
 SETTING UP DVC FOR THE FIRST TIME : 
