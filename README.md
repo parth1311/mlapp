@@ -71,13 +71,13 @@ Step 1:
 
 Step 2: (For DVC based tracking)
  - Install and Configure DVC (installation handled in requirements.txt)
- - dvc init
- - dvc remote add origin https://dagshub.com/parth1311/mlapp.dvc
- - dvc remote modify origin --local auth basic
- - dvc pull -r origin
- - dvc add <files> - Whenever new files have to be tracked on DVC
- - dvc push -r origin
- - git add <files> - Whenever files need to be committed and pushed to GitHub
+     - dvc init
+     - dvc remote add origin https://dagshub.com/parth1311/mlapp.dvc
+     - dvc remote modify origin --local auth basic
+     - dvc pull -r origin
+     - dvc add <files> - Whenever new files have to be tracked on DVC
+     - dvc push -r origin
+     - git add <files> - Whenever files need to be committed and pushed to GitHub
  
 Step 3 : 
  - Whenever a change to dataset/model is done, run a "dvc repro" in the project directory to run all the stages in DVC pipeline.
@@ -85,18 +85,18 @@ Step 3 :
 
 Step : (For MLFlow based Tracking)
   - Install mlflow (Comes as part of requirement.txt)
-  - mlflow.set_tracking_uri("https://dagshub.com/parth1311/mlapp.mlflow")
-    tracking_uri = mlflow.get_tracking_uri()
-    print("Current tracking uri: {}".format(tracking_uri))
+      - mlflow.set_tracking_uri("https://dagshub.com/parth1311/mlapp.mlflow")
+        tracking_uri = mlflow.get_tracking_uri()
+        print("Current tracking uri: {}".format(tracking_uri))
 
 
 
 SETTING UP DVC FOR THE FIRST TIME : 
 ------------------------------
   - Make sure you have all the required python files to create dataset, extract feature set, split the dataset into test and train, train the dataset, and evaluate the model based on some metrics
-  - dvc run -f -n prepare -d src/data/create_dataset.py -o assets/data python src/data/create_dataset.py
-  - dvc run -f -n featurize -d src/features/create_features.py -d assets/data -o assets/features python src/features/create_features.py
-  - dvc run -f -n evaluate -d src/models/evaluate_model.py -d assets/features -d assets/models -p model_type -M assets/metrics.json python src/models/evaluate_model.py
+      - dvc run -f -n prepare -d src/data/create_dataset.py -o assets/data python src/data/create_dataset.py
+      - dvc run -f -n featurize -d src/features/create_features.py -d assets/data -o assets/features python src/features/create_features.py
+      - dvc run -f -n evaluate -d src/models/evaluate_model.py -d assets/features -d assets/models -p model_type -M assets/metrics.json python src/models/evaluate_model.py
   - On running these steps, the dvc.yaml file is updated with the stages in the pipeline/workflow.
   - Push all the files into the repo and run a "dvc repro" the next time you want to tune hyperparameters/ change the dataset
 ------------------------------
